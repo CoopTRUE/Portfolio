@@ -1,4 +1,9 @@
-<nav>
+<script lang="ts">
+  import { fly } from 'svelte/transition'
+  export let height: number
+</script>
+
+<nav bind:clientHeight={height} in:fly={{ x: 0, y: -25, duration: 400, delay: 400 }}>
   <div class="logo" />
   <div class="links">
     <a href="#home">Home</a>
@@ -29,7 +34,6 @@
     align-items: center;
     gap: 5rem;
   }
-
   a {
     text-decoration: none;
     color: #000;

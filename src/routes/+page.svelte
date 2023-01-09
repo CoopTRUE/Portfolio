@@ -1,7 +1,15 @@
 <script lang="ts">
-  import Hero from './Hero.svelte'
   import Navbar from './Navbar.svelte'
+  import Hero from './Hero.svelte'
+  import Work from './Work.svelte'
+  import Connect from './Connect.svelte'
+
+  let navHeight: number
 </script>
 
-<Navbar />
-<Hero />
+<Navbar bind:height={navHeight} />
+<main>
+  <Hero {navHeight} />
+  <Work />
+  <Connect />
+</main>

@@ -15,12 +15,12 @@
 
 html {
   color-scheme: light;
+  --max-width: 980px;
+  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
-  scroll-behavior: smooth;
   font-family: 'AirbnbCereal_W_Md', sans-serif;
   -webkit-font-smoothing: antialiased;
-  --max-width: 980px;
 }
