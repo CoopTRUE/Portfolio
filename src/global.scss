@@ -1,0 +1,23 @@
+
+@font-face {
+  font-family: 'Menlo';
+  src: url('/fonts/Menlo-Regular.ttf');
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
