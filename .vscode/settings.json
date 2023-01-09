@@ -1,0 +1,7 @@
+{
+  "editor.formatOnSave": true,
+  "[svg]": {
+    "editor.formatOnSave": false
+  },
+  "files.eol": "\n" // Keep consistent with .prettierrc
+}

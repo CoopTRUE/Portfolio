@@ -1,7 +1,6 @@
-
 @font-face {
-  font-family: 'Menlo';
-  src: url('/fonts/Menlo-Regular.ttf');
+  src: url('/fonts/AirbnbCereal_W_Md.woff2');
+  font-family: 'AirbnbCereal_W_Md';
 }
 
 *,
@@ -11,6 +10,7 @@
   padding: 0;
   box-sizing: border-box;
   font: inherit;
+  -webkit-font-smoothing: inherit;
 }
 
 html {
@@ -20,4 +20,7 @@ html {
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
+  font-family: 'AirbnbCereal_W_Md', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  --max-width: 980px;
 }
