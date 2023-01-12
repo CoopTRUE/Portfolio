@@ -3,6 +3,7 @@
   import Hero from './Hero.svelte'
   import Work from './Work.svelte'
   import Connect from './Connect.svelte'
+  import Footer from './Footer.svelte'
 
   let navHeight: number
 </script>
@@ -13,3 +14,4 @@
   <Work />
   <Connect />
 </main>
+<Footer />
