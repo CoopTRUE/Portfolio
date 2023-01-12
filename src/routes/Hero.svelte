@@ -1,51 +1,130 @@
 <script lang="ts">
-  import { fly } from 'svelte/transition'
+  import ethers from '$lib/svgs/ethers.svg'
+  import sass from '$lib/svgs/sass.svg'
+  import svelte from '$lib/svgs/svelte.svg'
+  import typescript from '$lib/svgs/typescript.svg'
+  import { draw, fly, scale } from 'svelte/transition'
+  import wheel from '$lib/svgs/wheel.svg'
 
   export let navHeight: number
+
+  const tools = {
+    ethers,
+    sass,
+    svelte,
+    typescript
+  } as Record<string, string>
+  let hoveredTool: string | null = null
+  const images = {
+    wheel
+  } as const
 </script>
 
-<section
-  id="home"
-  style:height={`calc(100vh - ${navHeight}px)`}
-  in:fly={{ x: 0, y: 25, duration: 400 }}
->
-  <h2 class="based">Based in San Francisco, California 🇺🇸</h2>
-  <h1>Designer, developer,<br />and student.</h1>
-  <ul class="tools">
-    <li class="svelte">
-      <span>Svelte</span>
-      <img src="" alt="" />
-    </li>
-    <li class="sass">
-      <span>Sass</span>
-      <img src="" alt="" />
-    </li>
-    <li class="typescript">
-      <span>TypeScript</span>
-      <img src="" alt="" />
-    </li>
-    <li class="ethers">
-      <span>Ethers.js</span>
-      <img src="" alt="" />
-    </li>
-  </ul>
+<section id="home" style:height={`calc(100vh - ${navHeight}px)`}>
+  <h2 in:fly={{ x: 0, y: 25, duration: 400, delay: 300 }} class="based">
+    Based in San Francisco, California 🇺🇸
+  </h2>
+  <h1 in:fly={{ x: 0, y: 25, duration: 400 }}>Trader, developer,<br />and student.</h1>
+  <div class="tools-i-work-with">
+    <h2>Tools I work with</h2>
+    <ul class="tools">
+      {#each Object.entries(tools) as [tool, src], i}
+        <li
+          class={tool.toLowerCase()}
+          in:fly={{ x: 0, y: 25, duration: 400, delay: 600 + i * 100 }}
+        >
+          <img
+            {src}
+            alt={tool}
+            on:mouseenter={() => (hoveredTool = tool)}
+            on:mouseleave={() => (hoveredTool = null)}
+          />
+        </li>
+      {/each}
+    </ul>
+  </div>
+  <div class="project-images-wrapper">
+    <div class="images">
+      {#each Object.entries(images) as [image, src], i}
+        <svg href={src} />
+        <!-- <svg {src} in:draw={{ duration: 400, delay: 600 + i * 100 }} /> -->
+      {/each}
+    </div>
+  </div>
+  {#if hoveredTool}
+    <img
+      src={tools[hoveredTool]}
+      alt=""
+      class="large-tool"
+      in:scale={{ duration: 400, start: 0.5 }}
+    />
+  {/if}
 </section>
+<!-- in:scale={{ duration: 500, delay: 600 + i * 100, opacity: 0, start: 0.8 }} -->
+<div class="bg" />
 
 <style lang="scss">
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // nice white to light purple gradient
+    background: linear-gradient(0deg, rgb(225, 228, 245) 0%, rgb(255, 255, 255) 100%);
+    z-index: -1;
+  }
+  .large-tool {
+    position: absolute;
+    right: 0;
+    width: 20rem;
+    height: 20rem;
+    object-fit: contain;
+  }
   section {
     width: var(--max-width);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
+    gap: 4rem;
     margin: 0 auto;
+    position: relative;
   }
   h1 {
     font-size: 4rem;
     margin: 0;
   }
-  h2 {
+  .based {
     font-size: 1.5rem;
     margin: 0;
+  }
+  .tools-i-work-with {
+    font-size: 1.1rem;
+    h2 {
+      margin-bottom: 1rem;
+    }
+    .tools {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      gap: 1rem;
+    }
+    img {
+      width: 1.875rem;
+      height: 1.875rem;
+      object-fit: contain;
+    }
+  }
+  .project-images-wrapper {
+    position: relative;
+    .images {
+      position: absolute;
+      bottom: 75%;
+      right: 0;
+      img {
+        width: 20rem;
+        height: 20rem;
+      }
+    }
   }
 </style>

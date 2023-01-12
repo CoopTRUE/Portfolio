@@ -3,7 +3,7 @@
   export let height: number
 </script>
 
-<nav bind:clientHeight={height} in:fly={{ x: 0, y: -25, duration: 400, delay: 400 }}>
+<nav bind:clientHeight={height} in:fly={{ x: 0, y: -25, duration: 400, delay: 600 }}>
   <div class="logo" />
   <div class="links">
     <a href="#home">Home</a>
