@@ -1,5 +1,6 @@
 <script lang="ts">
   import mvCasino from '$lib/images/mv-casino.png?w=1500&webp'
+  import { inview } from 'svelte-inview'
 
   const projects = [
     {
@@ -39,13 +40,22 @@
       color: 'rgb(183,131,248)'
     }
   ] as const
+
+  let visible = Array(projects.length).fill(false) as boolean[]
 </script>
 
 <section id="work">
   <h2 class="title">My Work</h2>
   <div class="projects">
-    {#each projects as project}
-      <div class="project-wrapper" style:background={project.color}>
+    {#each projects as project, i}
+      <div
+        class="project-wrapper"
+        style:background={project.color}
+        use:inview={{ unobserveOnEnter: true }}
+        on:enter={() => (visible[i] = true)}
+        class:transitionRight={visible[i] && i % 2 !== 0}
+        class:transitionLeft={visible[i] && i % 2 === 0}
+      >
         <div class="project">
           <img src={project.image} alt="" />
           <div class="text">
@@ -78,11 +88,37 @@
   }
   .project-wrapper {
     //980 500
-    width: 60rem;
-    height: 30rem;
+    width: min(60rem, 90vw);
+    height: min(30rem, 50vw);
     border-radius: 40px;
     position: relative;
     overflow: hidden;
+    visibility: hidden;
+    &.transitionRight {
+      visibility: visible;
+      // fast to slow easing
+      animation: transitionRight 0.7s ease;
+    }
+    &.transitionLeft {
+      visibility: visible;
+      animation: transitionLeft 0.7s ease;
+    }
+    @keyframes transitionRight {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    @keyframes transitionLeft {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
     &:nth-child(even) {
       .project {
         grid-template-areas: 'text image';
@@ -101,6 +137,12 @@
     // grid-template-columns: 620px 1fr;
     // grid-template-rows: 1fr;
     grid-template-areas: 'image text';
+    @media (max-width: 780px) {
+      grid-template-areas: 'text' 'image' !important;
+      .name {
+        text-align: center;
+      }
+    }
     place-items: center;
     .text {
       grid-area: text;
@@ -115,8 +157,9 @@
     }
     overflow: hidden;
     img {
+      margin-top: auto;
       grid-area: image;
-      width: 620px;
+      width: min(620px, 50vw);
       border-radius: 0 10px 0 0;
     }
   }

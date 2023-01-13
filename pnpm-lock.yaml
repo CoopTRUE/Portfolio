@@ -18,10 +18,14 @@ specifiers:
   sass: ^1.57.1
   svelte: ^3.54.0
   svelte-check: ^2.9.2
+  svelte-inview: ^3.0.2
   tslib: ^2.4.1
   typescript: ^4.9.3
   vite: ^4.0.0
   vite-imagetools: ^4.0.13
+
+dependencies:
+  svelte-inview: 3.0.2_svelte@3.55.0
 
 devDependencies:
   '@rollup/plugin-image': 3.0.1
@@ -2180,6 +2184,14 @@ packages:
       svelte: 3.55.0
     dev: true
 
+  /svelte-inview/3.0.2_svelte@3.55.0:
+    resolution: {integrity: sha512-QdMGe8oE/dsoqbQHppeNgz9zK0Ahir+RYDqw5JwKJcbdzLOkgPGp0Dzt8c9PIdEQXoJD+piOeMGdQGrCmlyMag==}
+    peerDependencies:
+      svelte: ^3.0.0
+    dependencies:
+      svelte: 3.55.0
+    dev: false
+
   /svelte-preprocess/4.10.7_vsntmwrrlk5avk6zexsfqc76hy:
     resolution: {integrity: sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw==}
     engines: {node: '>= 9.11.2'}
@@ -2237,7 +2249,6 @@ packages:
   /svelte/3.55.0:
     resolution: {integrity: sha512-uGu2FVMlOuey4JoKHKrpZFkoYyj0VLjJdz47zX5+gVK5odxHM40RVhar9/iK2YFRVxvfg9FkhfVlR0sjeIrOiA==}
     engines: {node: '>= 8'}
-    dev: true
 
   /tar-fs/2.1.1:
     resolution: {integrity: sha512-V0r2Y9scmbDRLCNex/+hYzvp/zyYjvFbHPNgVTKfQvVrb6guiE/fxP+XblDNR011utopbkex2nM4dHNV6GDsng==}
