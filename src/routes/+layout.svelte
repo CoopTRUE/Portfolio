@@ -4,7 +4,7 @@
   import { onMount } from 'svelte'
   import { browser } from '$app/environment'
 
-  const goodbyeNames = ['Come back :,(', 'I miss you already', 'Pls come back ;-;']
+  const goodbyeNames = ['Pls come back ;-;']
 
   const defaultTitle = 'Portfolio'
   let title = defaultTitle

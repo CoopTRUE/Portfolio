@@ -5,6 +5,7 @@
   import typescript from '$lib/svgs/typescript.svg'
   import { draw, fade, fly, scale } from 'svelte/transition'
   import wheel from '$lib/svgs/wheel.svg'
+  import Strip from './Strip.svelte'
 
   const tools = {
     ethers,
@@ -59,6 +60,7 @@
       in:scale={{ duration: 400, start: 0.5 }}
     />
   {/if}
+  <Strip hovered={hoveredTool} />
 </section>
 <!-- in:scale={{ duration: 500, delay: 600 + i * 100, opacity: 0, start: 0.8 }} -->
 <div class="bg" />
@@ -72,7 +74,7 @@
     width: 100%;
     height: 100%;
     // nice white to light purple gradient
-    background: linear-gradient(0deg, rgb(225, 228, 245) 0%, rgb(255, 255, 255) 100%);
+    background: linear-gradient(25deg, rgb(230, 196, 236) 0%, rgb(255, 255, 255) 100%);
     z-index: -10;
   }
   .large-tool {

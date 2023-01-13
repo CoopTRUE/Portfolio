@@ -1,3 +1,3 @@
 <section id="connect">
-  <h1>Connect</h1>
+  <h2>Connect</h2>
 </section>
