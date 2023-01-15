@@ -22,10 +22,12 @@
     return () => clearInterval(id)
   })
   let height: number
+
+  export let hidden = false
 </script>
 
 <svelte:window bind:innerHeight={height} />
-<div class="wrapper">
+<div class="wrapper" class:hidden>
   <div class="overlay" in:fade={{ duration: 400, delay: 600 }} />
   <div
     class="container"
@@ -47,6 +49,9 @@
     width: 15rem;
     overflow: hidden;
     position: relative;
+    &.hidden {
+      display: none;
+    }
   }
   .container {
     display: flex;

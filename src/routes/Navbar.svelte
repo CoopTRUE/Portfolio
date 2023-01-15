@@ -2,32 +2,32 @@
   import github from '$lib/svgs/github.svg'
   import { fly } from 'svelte/transition'
   export let height: number
-
-  let clientWidth: number
 </script>
 
-<nav
-  bind:clientHeight={height}
-  bind:clientWidth
-  in:fly={{ x: 0, y: -25, duration: 400, delay: 600 }}
->
+<nav bind:clientHeight={height} in:fly={{ x: 0, y: -25, duration: 400, delay: 600 }}>
   <a href="https://github.com/coopTRUE" target="_blank" rel="noreferrer" class="github">
     <img src={github} alt="github" />
   </a>
-  {#if clientWidth > 600}
-    <ul class="links">
-      <li>
-        <a href="#home">Home</a>
-      </li>
-      <a href="#work">Work</a>
-      <li>
-        <a href="#connect">Connect</a>
-      </li>
-    </ul>
-  {/if}
+  <ul class="links">
+    <li>
+      <a href="#home">Home</a>
+    </li>
+    <a href="#work">Work</a>
+    <li>
+      <a href="#connect">Connect</a>
+    </li>
+  </ul>
 </nav>
 
 <style lang="scss">
+  @media (max-width: 635px) {
+    nav {
+      justify-content: center !important;
+    }
+    .links {
+      display: none !important;
+    }
+  }
   nav {
     display: flex;
     justify-content: space-between;
