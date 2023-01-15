@@ -3,6 +3,8 @@
   import sass from '$lib/svgs/sass.svg'
   import svelte from '$lib/svgs/svelte.svg'
   import typescript from '$lib/svgs/typescript.svg'
+  import { onMount } from 'svelte'
+  import { fly } from 'svelte/transition'
 
   const images = {
     ethers,
@@ -10,53 +12,52 @@
     svelte,
     typescript
   } as Record<string, string>
+  const entires = Object.entries(images)
 
-  export let hovered: string | null = null
+  let scroll = 0
+  const scrollPerMs = 0.4
+  const scrollPerImage = 250
+  onMount(() => {
+    const id = setInterval(() => (scroll += scrollPerMs), 1)
+    return () => clearInterval(id)
+  })
+  let height: number
 </script>
 
-<div class="wrapper">
-  <div class="container">
-    {#each Array(20) as _}
-      {#if !hovered}
-        {#each Object.entries(images) as [image, src], i}
-          <img {src} alt={image} />
-        {/each}
-      {:else}
-        <img src={images[hovered]} alt={hovered} />
-      {/if}
+<svelte:window bind:innerHeight={height} />
+<div class="wrapper" in:fly={{ x: -50, y: 0, delay: 900, duration: 400 }}>
+  <div class="overlay" />
+  <div class="container" style:translate={`0 -${scroll}px`}>
+    <!-- perfect timing for only rendering the images that are visible -->
+    {#each Array(Math.floor(2 + innerHeight / 300) + Math.floor(scroll / scrollPerImage)) as _, i}
+      {@const [name, image] = entires[i % entires.length]}
+      <img src={image} alt={name} />
     {/each}
   </div>
 </div>
 
 <style lang="scss">
-  .overlay {
-    background: linear-gradient(25deg, rgb(230, 196, 236) 0%, rgb(255, 255, 255) 100%);
-    height: 100%;
-    z-index: 1;
-  }
   .wrapper {
+    margin: 0 auto;
     height: 100%;
     width: 15rem;
-    position: absolute;
-    right: 12.5%;
-    top: 0;
     overflow: hidden;
+    position: relative;
   }
   .container {
     display: flex;
     flex-direction: column;
     gap: 5rem;
-    // make a green background with the top and the bottom faded out
     overflow: hidden;
-    // scroll the images but make it seemless
-    animation: scroll 60s linear infinite;
   }
-  @keyframes scroll {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-100%);
-    }
+  .overlay {
+    position: absolute;
+    // top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // fade in from the top
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 10%);
+    z-index: 10;
   }
 </style>

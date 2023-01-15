@@ -8,59 +8,42 @@
   import Strip from './Strip.svelte'
 
   const tools = {
-    ethers,
-    sass,
-    svelte,
-    typescript
-  } as Record<string, string>
+    ethers: { image: ethers, link: 'https://docs.ethers.io/v5/' },
+    sass: { image: sass, link: 'https://sass-lang.com/' },
+    svelte: { image: svelte, link: 'https://svelte.dev/' },
+    typescript: { image: typescript, link: 'https://www.typescriptlang.org/' }
+  }
   const images = {
     wheel
   }
 
   export let navHeight: number
-  let hoveredTool: string | null = null
+  export let contentHeight: number
+  $: height = `max(500px, calc(100vh - ${navHeight}px))`
 </script>
 
-<section id="home" style:height={`calc(100vh - ${navHeight}px)`}>
-  <h2 in:fly={{ x: 0, y: 25, duration: 400, delay: 300 }} class="based">
-    Based in San Francisco, California 🇺🇸
-  </h2>
-  <h1 in:fly={{ x: 0, y: 50, duration: 400 }}>Trader, developer,<br />and student.</h1>
-  <div class="tools-i-work-with">
-    <h2 in:fade={{ duration: 300, delay: 600 }}>Tools I work with</h2>
-    <ul class="tools">
-      {#each Object.entries(tools) as [tool, src], i}
-        <li
-          class={tool.toLowerCase()}
-          in:fly={{ x: 0, y: 25, duration: 400, delay: 600 + i * 100 }}
-        >
-          <img
-            {src}
-            alt={tool}
-            on:mouseenter={() => (hoveredTool = tool)}
-            on:mouseleave={() => (hoveredTool = null)}
-          />
-        </li>
-      {/each}
-    </ul>
-  </div>
-  <div class="project-images-wrapper">
-    <div class="images">
-      {#each Object.entries(images) as [image, src], i}
-        <svg href={src} />
-        <!-- <svg {src} in:draw={{ duration: 400, delay: 600 + i * 100 }} /> -->
-      {/each}
+<section id="home" style:height>
+  <div class="content" bind:clientHeight={contentHeight}>
+    <h2 in:fly={{ x: 0, y: 25, duration: 400, delay: 300 }} class="based">
+      Based in San Francisco, California 🇺🇸
+    </h2>
+    <h1 class="title" in:fly={{ x: 0, y: 50, duration: 400 }}>
+      Trader, developer,<br />and student.
+    </h1>
+    <div class="tools-i-work-with">
+      <h2 in:fade={{ duration: 300, delay: 600 }}>Tools I work with</h2>
+      <ul class="tools">
+        {#each Object.entries(tools) as [tool, { image, link }], i}
+          <li class="tool" in:fly={{ x: 0, y: 25, duration: 400, delay: 600 + i * 100 }}>
+            <a href={link} target="_blank" rel="noreferrer">
+              <img src={image} alt={tool} />
+            </a>
+          </li>
+        {/each}
+      </ul>
     </div>
   </div>
-  {#if hoveredTool}
-    <img
-      src={tools[hoveredTool]}
-      alt=""
-      class="large-tool"
-      in:scale={{ duration: 400, start: 0.5 }}
-    />
-  {/if}
-  <Strip hovered={hoveredTool} />
+  <Strip />
 </section>
 <!-- in:scale={{ duration: 500, delay: 600 + i * 100, opacity: 0, start: 0.8 }} -->
 <div class="bg" />
@@ -77,33 +60,24 @@
     background: linear-gradient(25deg, rgb(230, 196, 236) 0%, rgb(255, 255, 255) 100%);
     z-index: -10;
   }
-  .large-tool {
-    position: absolute;
-    @media (min-width: $mobile) {
-      right: 0;
-    }
-    @media (max-width: $mobile) {
-      z-index: -2;
-      opacity: 0.3;
-    }
-    width: min(20rem, 80vw);
-    height: min(20rem, 80vw);
-    object-fit: contain;
-  }
   section {
     max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+  }
+  .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: min(8.5vw, 4rem);
-    margin: 0 auto;
-    position: relative;
     @media (max-width: $mobile) {
       align-items: center;
       text-align: center;
     }
   }
-  h1 {
+  .title {
     font-size: clamp(2rem, 4rem, 10vw);
     margin: 0;
   }
@@ -122,27 +96,15 @@
       list-style: none;
       gap: 1rem;
     }
-    li {
-      &:hover {
-        cursor: pointer;
-      }
-    }
-    img {
-      width: 1.875rem;
-      height: 1.875rem;
-      object-fit: contain;
-    }
-  }
-  .project-images-wrapper {
-    position: relative;
-    z-index: -1;
-    .images {
-      position: absolute;
-      bottom: 75%;
-      right: 0;
+    .tool {
       img {
-        width: 20rem;
-        height: 20rem;
+        width: 1.875rem;
+        height: 1.875rem;
+        object-fit: contain;
+        transition: scale 0.2s ease;
+      }
+      &:hover img {
+        scale: 1.2;
       }
     }
   }
