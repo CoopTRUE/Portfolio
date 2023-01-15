@@ -22,7 +22,7 @@
   $: height = `max(500px, calc(100vh - ${navHeight}px))`
 </script>
 
-<section id="home" style:height>
+<section style:height>
   <div class="content" bind:clientHeight={contentHeight}>
     <h2 in:fly={{ x: 0, y: 25, duration: 400, delay: 300 }} class="based">
       Based in San Francisco, California 🇺🇸
@@ -46,7 +46,7 @@
   <Strip />
 </section>
 <!-- in:scale={{ duration: 500, delay: 600 + i * 100, opacity: 0, start: 0.8 }} -->
-<div class="bg" />
+<div class="bg" id="home" />
 
 <style lang="scss">
   $mobile: 1000px;
