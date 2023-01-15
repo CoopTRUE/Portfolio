@@ -4,7 +4,7 @@
   import svelte from '$lib/svgs/svelte.svg'
   import typescript from '$lib/svgs/typescript.svg'
   import { onMount } from 'svelte'
-  import { fly } from 'svelte/transition'
+  import { fade, fly } from 'svelte/transition'
 
   const images = {
     ethers,
@@ -25,9 +25,13 @@
 </script>
 
 <svelte:window bind:innerHeight={height} />
-<div class="wrapper" in:fly={{ x: -50, y: 0, delay: 900, duration: 400 }}>
-  <div class="overlay" />
-  <div class="container" style:translate={`0 -${scroll}px`}>
+<div class="wrapper">
+  <div class="overlay" in:fade={{ duration: 400, delay: 600 }} />
+  <div
+    class="container"
+    style:translate={`0 -${scroll}px`}
+    in:fly={{ x: 0, y: 100, delay: 900, duration: 1500 }}
+  >
     <!-- perfect timing for only rendering the images that are visible -->
     {#each Array(Math.floor(2 + innerHeight / 300) + Math.floor(scroll / scrollPerImage)) as _, i}
       {@const [name, image] = entires[i % entires.length]}
