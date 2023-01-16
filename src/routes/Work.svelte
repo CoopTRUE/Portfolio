@@ -1,45 +1,6 @@
 <script lang="ts">
-  import mvCasino from '$lib/images/mv-casino.png?w=1500&webp'
   import { inview } from 'svelte-inview'
-
-  const projects = [
-    {
-      name: 'Miniverse Casino',
-      description: `Miniverse Casino is a centralized casino that runs on the Fantom Opera network.`,
-      image: mvCasino,
-      color: 'rgb(183,131,248)'
-    },
-    {
-      name: 'Grape Casino',
-      description: `Grape Casino is a decentralized casino that runs on the Fantom Opera network.`,
-      image: mvCasino,
-      color: 'rgb(183,131,248)'
-    },
-    {
-      name: 'Miniverse Casino',
-      description: `Miniverse Casino is a centralized casino that runs on the Fantom Opera network.`,
-      image: mvCasino,
-      color: 'rgb(183,131,248)'
-    },
-    {
-      name: 'Grape Casino',
-      description: `Grape Casino is a decentralized casino that runs on the Fantom Opera network.`,
-      image: mvCasino,
-      color: 'rgb(183,131,248)'
-    },
-    {
-      name: 'Miniverse Casino',
-      description: `Miniverse Casino is a centralized casino that runs on the Fantom Opera network.`,
-      image: mvCasino,
-      color: 'rgb(183,131,248)'
-    },
-    {
-      name: 'Grape Casino',
-      description: `Grape Casino is a decentralized casino that runs on the Fantom Opera network.`,
-      image: mvCasino,
-      color: 'rgb(183,131,248)'
-    }
-  ] as const
+  import projects from './projects'
 
   let visible = Array(projects.length).fill(false) as boolean[]
 </script>
@@ -94,6 +55,7 @@
     position: relative;
     overflow: hidden;
     visibility: hidden;
+    background: linear-gradient(180deg, rgb(85, 32, 148) 0%, rgb(126, 145, 232) 100%);
     &.transitionRight {
       visibility: visible;
       // fast to slow easing
@@ -150,6 +112,7 @@
     }
     .name {
       font-size: 2rem;
+      margin-bottom: 1rem;
     }
     .description {
       font-size: 1.2rem;

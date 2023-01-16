@@ -21,12 +21,12 @@
     const id = setInterval(() => (scroll += scrollPerMs), 1)
     return () => clearInterval(id)
   })
-  let height: number
 
+  let innerHeight: number = 1000
   export let hidden = false
 </script>
 
-<svelte:window bind:innerHeight={height} />
+<svelte:window bind:innerHeight />
 <div class="wrapper" class:hidden>
   <div class="overlay" in:fade={{ duration: 400, delay: 600 }} />
   <div

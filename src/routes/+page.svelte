@@ -12,6 +12,6 @@
 <main>
   <Hero {navHeight} />
   <Work />
-  <Connect />
+  <!-- <Connect /> -->
 </main>
 <Footer />

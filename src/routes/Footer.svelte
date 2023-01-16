@@ -10,6 +10,9 @@
 </footer>
 
 <style>
+  footer {
+    margin-top: 5rem;
+  }
   p {
     display: flex;
     align-items: center;

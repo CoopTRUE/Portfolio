@@ -18,12 +18,12 @@
   }
 
   export let navHeight: number
-  export let contentHeight: number
+  let contentHeight: number
   $: height = `max(500px, calc(100vh - ${navHeight}px))`
-  let windowWidth: number
+  let innerWidth: number
 </script>
 
-<svelte:window bind:innerWidth={windowWidth} />
+<svelte:window bind:innerWidth />
 <section style:height>
   <div class="content" bind:clientHeight={contentHeight}>
     <h2 in:fly={{ x: 0, y: 25, duration: 400, delay: 300 }} class="based">
@@ -45,7 +45,7 @@
       </ul>
     </div>
   </div>
-  <Strip hidden={windowWidth < 1000} />
+  <Strip hidden={innerWidth < 1000} />
 </section>
 <!-- in:scale={{ duration: 500, delay: 600 + i * 100, opacity: 0, start: 0.8 }} -->
 <div class="bg" id="home" />
