@@ -11,6 +11,9 @@
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write ."
   },
+  "dependencies": {
+    "svelte-inview": "^3.0.2"
+  },
   "devDependencies": {
     "@rollup/plugin-image": "^3.0.1",
     "@sveltejs/adapter-vercel": "^1.0.4",
@@ -34,8 +37,8 @@
     "vite": "^4.0.4",
     "vite-imagetools": "^4.0.14"
   },
-  "type": "module",
-  "dependencies": {
-    "svelte-inview": "^3.0.2"
-  }
+  "browserslist": [
+    "defaults"
+  ],
+  "type": "module"
 }
