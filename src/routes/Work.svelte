@@ -85,7 +85,8 @@
       .project {
         grid-template-areas: 'text image';
         img {
-          border-radius: 10px 0 0 0 !important;
+          // border-radius: 10px 0 0 0 !important;
+          border-top-left-radius: 10px !important;
         }
       }
     }
@@ -103,6 +104,9 @@
       grid-template-areas: 'text' 'image' !important;
       .name {
         text-align: center;
+      }
+      img {
+        border-radius: 10px 10px 0 0 !important;
       }
     }
     place-items: center;
@@ -123,7 +127,7 @@
       margin-top: auto;
       grid-area: image;
       width: min(620px, 50vw);
-      border-radius: 0 10px 0 0;
+      border-top-right-radius: 10px;
     }
   }
 </style>
