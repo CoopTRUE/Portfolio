@@ -1,33 +1,17 @@
 <script lang="ts">
-  import express from '$lib/svgs/express.svg'
-
-  const tools = [
-    {
-      name: 'Expressjs',
-      img: express,
-      color: '#2361DAFB',
-      link: 'https://expressjs.com/',
-      description: `Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.`,
-      use: `idk`
-    }
-  ]
+  import tools from './tools'
 </script>
 
 <section id="tools">
-  <h2 class="title">Tools I Use</h2>
+  <h2 class="title">Tools I Work With</h2>
   <div class="tools">
-    <div class="express">
-      <img width="350" src={express} alt="expressjs" />
-      <p>Express</p>
-    </div>
-    <div class="express">
-      <img width="350" src={express} alt="expressjs" />
-      <p>Express</p>
-    </div>
-    <div class="express">
-      <img width="350" src={express} alt="expressjs" />
-      <p>Express</p>
-    </div>
+    {#each tools as { img, name, desc }}
+      <div class="tool">
+        <img src={img} alt={name} />
+        <h2>{name}</h2>
+        <!-- <p>{desc}</p> -->
+      </div>
+    {/each}
   </div>
 </section>
 
@@ -49,8 +33,13 @@
     flex-direction: column;
     gap: 3rem;
     // every other tool should be on the right
-    .express:nth-child(odd) {
+    :nth-child(even) {
       align-self: flex-end;
+    }
+    img {
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
     }
   }
 </style>
