@@ -54,6 +54,7 @@
     grid-template-rows: 300px;
     grid-template-areas: 'name use';
     // red to white gradient
+    border-radius: 20px;
     padding: 1rem 2rem;
     background: linear-gradient(90deg, white 0%, white 30%, var(--bg-color) 100%);
     background-size: 1000% 100%;
