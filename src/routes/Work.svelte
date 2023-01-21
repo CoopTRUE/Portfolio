@@ -2,26 +2,26 @@
   import { inview } from 'svelte-inview'
   import projects from './projects'
 
-  let visible = Array(projects.length).fill(false) as boolean[]
+  const visible = Array(projects.length).fill(false) as boolean[]
 </script>
 
 <section id="work">
   <h2 class="title">My Work</h2>
   <div class="projects">
-    {#each projects as project, i}
+    {#each projects as { color, img, name, desc }, i}
       <div
         class="project-wrapper"
-        style:background={project.color}
+        style:background={color}
         use:inview={{ unobserveOnEnter: true }}
         on:enter={() => (visible[i] = true)}
         class:transitionRight={visible[i] && i % 2 !== 0}
         class:transitionLeft={visible[i] && i % 2 === 0}
       >
         <div class="project">
-          <img src={project.image} alt="" />
+          <img src={img} alt={name} />
           <div class="text">
-            <h3 class="name">{project.name}</h3>
-            <p class="description">{project.description}</p>
+            <h3 class="name">{name}</h3>
+            <p class="description">{desc}</p>
           </div>
         </div>
       </div>

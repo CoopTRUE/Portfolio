@@ -56,6 +56,9 @@
     // red to white gradient
     border-radius: 20px;
     padding: 1rem 2rem;
+    @media (max-width: 780px) {
+      border-radius: 0;
+    }
     background: linear-gradient(90deg, white 0%, white 30%, var(--bg-color) 100%);
     background-size: 1000% 100%;
     &:nth-child(even) {
