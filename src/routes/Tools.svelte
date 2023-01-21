@@ -1,15 +1,28 @@
 <script lang="ts">
+  import { inview } from 'svelte-inview'
   import tools from './tools'
+
+  const visible = Array(tools.length).fill(false) as boolean[]
 </script>
 
 <section id="tools">
   <h2 class="title">Tools I Work With</h2>
   <div class="tools">
-    {#each tools as { img, name, desc }}
-      <div class="tool">
-        <img src={img} alt={name} />
-        <h2>{name}</h2>
-        <!-- <p>{desc}</p> -->
+    {#each tools as { img, name, color, desc, use }, i}
+      <div
+        class="tool"
+        style="--bg-color: {color}"
+        use:inview={{ unobserveOnEnter: true }}
+        on:enter={() => (visible[i] = true)}
+        class:transitionBg={visible[i]}
+      >
+        <div class="name-container">
+          <img src={img} alt={name} />
+          <h2>{name} <span>is a {desc}</span></h2>
+        </div>
+        <div class="use">
+          <p>{use}</p>
+        </div>
       </div>
     {/each}
   </div>
@@ -33,13 +46,71 @@
     flex-direction: column;
     gap: 3rem;
     // every other tool should be on the right
-    :nth-child(even) {
-      align-self: flex-end;
+  }
+  .tool {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 2rem;
+    grid-template-rows: 300px;
+    grid-template-areas: 'name use';
+    // red to white gradient
+    padding: 1rem 2rem;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, var(--bg-color) 100%);
+    background-size: 1000% 100%;
+    &:nth-child(even) {
+      grid-template-columns: 5fr 1fr;
+      grid-template-areas: 'use name';
+      background: linear-gradient(90deg, var(--bg-color) 0%, rgba(255, 255, 255, 1) 100%);
+      background-size: 1000% 100%;
+      background-position: 100% 0;
     }
-    img {
-      width: 300px;
-      height: 300px;
-      object-fit: contain;
+    &.transitionBg {
+      animation: transitionBg 0.7s ease forwards;
+    }
+    @keyframes transitionBg {
+      0% {
+      }
+      100% {
+        background-position: 0 0;
+
+        background-size: 100% 100%;
+      }
+    }
+    .name-container {
+      grid-area: name;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      h2 {
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+
+      span {
+        font-family: 'AirbnbCereal_W_Lt';
+        font-size: 1rem;
+        width: 40%;
+      }
+      // .img-wrapper {
+      //   width: 300px;
+      //   height: 200px;
+      // }
+      img {
+        width: 300px;
+        height: 200px;
+        object-fit: contain;
+      }
+    }
+    .use {
+      grid-area: use;
+      display: grid;
+      place-items: center;
+      p {
+        font-family: 'AirbnbCereal_W_Lt';
+        font-size: 1rem;
+        width: 80%;
+      }
     }
   }
 </style>
