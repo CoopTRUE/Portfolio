@@ -55,12 +55,12 @@
     grid-template-areas: 'name use';
     // red to white gradient
     padding: 1rem 2rem;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, var(--bg-color) 100%);
+    background: linear-gradient(90deg, white 0%, white 30%, var(--bg-color) 100%);
     background-size: 1000% 100%;
     &:nth-child(even) {
       grid-template-columns: 5fr 1fr;
       grid-template-areas: 'use name';
-      background: linear-gradient(90deg, var(--bg-color) 0%, rgba(255, 255, 255, 1) 100%);
+      background: linear-gradient(90deg, var(--bg-color) 0%, white 70%, white 100%);
       background-size: 1000% 100%;
       background-position: 100% 0;
     }
