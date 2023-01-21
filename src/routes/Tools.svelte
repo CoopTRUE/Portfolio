@@ -33,8 +33,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: var(--max-width);
-    margin: 0 auto;
   }
   .title {
     font-size: 2.5rem;

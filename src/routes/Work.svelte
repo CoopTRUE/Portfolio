@@ -34,9 +34,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // height: 100vh;
-    max-width: var(--max-width);
-    margin: 0 auto;
     .title {
       font-size: 2.5rem;
       margin: 5rem 0;

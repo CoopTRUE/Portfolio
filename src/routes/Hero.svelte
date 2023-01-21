@@ -71,8 +71,7 @@
     z-index: -10;
   }
   section {
-    max-width: var(--max-width);
-    margin: 0 auto;
+    height: 100vh;
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: 1fr;

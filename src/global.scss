@@ -28,3 +28,8 @@ body {
   font-family: 'AirbnbCereal_W_Md', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
