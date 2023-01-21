@@ -6,6 +6,7 @@
   import { draw, fade, fly, scale } from 'svelte/transition'
   import wheel from '$lib/svgs/wheel.svg'
   import Strip from './Strip.svelte'
+  import { onMount } from 'svelte'
 
   const tools = {
     ethers: { image: ethers, link: 'https://docs.ethers.io/v5/' },
@@ -21,31 +22,38 @@
   let contentHeight: number
   $: height = `max(500px, calc(100vh - ${navHeight}px))`
   let innerWidth: number
+
+  let loaded = false
+  onMount(() => {
+    loaded = true
+  })
 </script>
 
 <svelte:window bind:innerWidth />
 <section style:height>
-  <div class="content" bind:clientHeight={contentHeight}>
-    <h2 in:fly={{ x: 0, y: 25, duration: 400, delay: 300 }} class="based">
-      Based in San Francisco, California 🇺🇸
-    </h2>
-    <h1 class="title" in:fly={{ x: 0, y: 50, duration: 400 }}>
-      Trader, developer,<br />and student.
-    </h1>
-    <div class="tools-i-work-with">
-      <h2 in:fade={{ duration: 300, delay: 600 }}>Tools I work with</h2>
-      <ul class="tools">
-        {#each Object.entries(tools) as [tool, { image, link }], i}
-          <li class="tool" in:fly={{ x: 0, y: 25, duration: 400, delay: 600 + i * 100 }}>
-            <a href={link} target="_blank" rel="noreferrer">
-              <img src={image} alt={tool} />
-            </a>
-          </li>
-        {/each}
-      </ul>
+  {#if loaded}
+    <div class="content" bind:clientHeight={contentHeight}>
+      <h2 in:fly={{ x: 0, y: 25, duration: 400, delay: 300 }} class="based">
+        Based in San Francisco, California 🇺🇸
+      </h2>
+      <h1 class="title" in:fly={{ x: 0, y: 50, duration: 400 }}>
+        Trader, developer,<br />and student.
+      </h1>
+      <div class="tools-i-work-with">
+        <h2 in:fade={{ duration: 300, delay: 600 }}>Tools I work with</h2>
+        <ul class="tools">
+          {#each Object.entries(tools) as [tool, { image, link }], i}
+            <li class="tool" in:fly={{ x: 0, y: 25, duration: 400, delay: 600 + i * 100 }}>
+              <a href={link} target="_blank" rel="noreferrer">
+                <img src={image} alt={tool} />
+              </a>
+            </li>
+          {/each}
+        </ul>
+      </div>
     </div>
-  </div>
-  <Strip hidden={innerWidth < 1000} />
+    <Strip hidden={innerWidth < 1000} />
+  {/if}
 </section>
 <!-- in:scale={{ duration: 500, delay: 600 + i * 100, opacity: 0, start: 0.8 }} -->
 <div class="bg" id="home" />

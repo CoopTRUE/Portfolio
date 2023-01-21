@@ -9,22 +9,15 @@
   const defaultTitle = 'Portfolio'
   let title = defaultTitle
   $: if (browser) document.title = title
-
-  let loaded = false
-  onMount(() => {
-    loaded = true
-    document.addEventListener('visibilitychange', async () => {
+  if (browser) {
+    document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'hidden') {
-        await new Promise((resolve) => setTimeout(resolve, 10))
-        if (document.visibilityState === 'hidden')
-          title = goodbyeNames[Math.floor(Math.random() * goodbyeNames.length)]
+        title = goodbyeNames[Math.floor(Math.random() * goodbyeNames.length)]
       } else {
         title = defaultTitle
       }
     })
-  })
+  }
 </script>
 
-{#if loaded}
-  <slot />
-{/if}
+<slot />

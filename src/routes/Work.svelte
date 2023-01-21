@@ -30,7 +30,7 @@
 </section>
 
 <style lang="scss">
-  section {
+  #work {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,7 +45,7 @@
   .projects {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
   }
   .project-wrapper {
     //980 500
