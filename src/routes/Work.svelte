@@ -5,31 +5,89 @@
   const visible = Array(projects.length).fill(false) as boolean[]
 </script>
 
-<section id="work">
-  <h2 class="title">My Work</h2>
-  <div class="projects">
-    {#each projects as { color, img, name, desc }, i}
-      <div
-        class="project-wrapper"
-        style:background={color}
-        use:inview={{ unobserveOnEnter: true }}
-        on:enter={() => (visible[i] = true)}
-        class:transitionRight={visible[i] && i % 2 !== 0}
-        class:transitionLeft={visible[i] && i % 2 === 0}
-      >
-        <div class="project">
-          <img src={img} alt={name} />
-          <div class="text">
-            <h3 class="name">{name}</h3>
-            <p class="description">{desc}</p>
+<div class="wrapper">
+  <section id="work">
+    <h2 class="title">My Work</h2>
+    <div class="projects">
+      {#each projects as { color, img, name, desc }, i}
+        <div
+          class="project-wrapper"
+          style:background={color}
+          use:inview={{ unobserveOnEnter: true }}
+          on:enter={() => (visible[i] = true)}
+          class:transitionRight={visible[i] && i % 2 !== 0}
+          class:transitionLeft={visible[i] && i % 2 === 0}
+        >
+          <div class="project">
+            <img src={img} alt={name} />
+            <div class="text">
+              <h3 class="name">{name}</h3>
+              <p class="description">{desc}</p>
+            </div>
           </div>
         </div>
-      </div>
-    {/each}
+      {/each}
+    </div>
+  </section>
+  <div class="star-wrapper">
+    <div class="stars1" />
+    <div class="stars2" />
+    <div class="stars3" />
   </div>
-</section>
+</div>
 
 <style lang="scss">
+  .wrapper {
+    position: relative;
+  }
+  .star-wrapper {
+    position: absolute;
+    top: 20rem;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    > * {
+      position: absolute;
+    }
+  }
+  @function multiple-box-shadow($n) {
+    $value: '#{random(2000)}px #{random(2000)}px black';
+    @for $i from 2 through $n {
+      $value: '#{$value} , #{random(2000)}px #{random(2000)}px black';
+    }
+
+    @return unquote($value);
+  }
+  $shadows-small: multiple-box-shadow(700);
+  $shadows-medium: multiple-box-shadow(200);
+  $shadows-large: multiple-box-shadow(100);
+  .stars1 {
+    width: 1.5px;
+    height: 1.5px;
+    box-shadow: $shadows-small;
+    animation: animStar 50s linear infinite;
+  }
+  .stars2 {
+    // border: 10px solid black;
+    width: 2px;
+    height: 2px;
+    box-shadow: $shadows-medium;
+    animation: animStar 100s linear infinite;
+  }
+  .stars3 {
+    width: 3px;
+    height: 3px;
+    box-shadow: $shadows-large;
+    animation: animStar 150s linear infinite;
+  }
+  @keyframes animStar {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-2000px);
+    }
+  }
   #work {
     display: flex;
     flex-direction: column;
@@ -38,6 +96,8 @@
       font-size: 2.5rem;
       margin: 5rem 0;
     }
+    overflow-y: hidden;
+    position: relative;
   }
   .projects {
     display: flex;
