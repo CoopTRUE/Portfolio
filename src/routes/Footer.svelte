@@ -17,7 +17,7 @@
   </p>
 </footer>
 
-<style>
+<style lang="scss">
   footer {
     margin-top: 5rem;
     display: flex;
@@ -38,6 +38,10 @@
   }
   .svelte {
     width: 1rem;
+    transition: translate 0.25s ease;
+    &:hover {
+      translate: 0 -3px;
+    }
   }
   .github {
     width: 2rem;
