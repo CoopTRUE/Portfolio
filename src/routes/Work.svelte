@@ -9,7 +9,7 @@
   <section id="work">
     <h2 class="title">My Work</h2>
     <div class="projects">
-      {#each projects as { color, img, name, desc }, i}
+      {#each projects as { color, link, img, name, desc }, i}
         <div
           class="project-wrapper"
           style:background={color}
@@ -21,7 +21,13 @@
           <div class="project">
             <img src={img} alt={name} />
             <div class="text">
-              <h3 class="name">{name}</h3>
+              <h3 class="name">
+                {#if link}
+                  <a href={link}>{name}</a>
+                {:else}
+                  {name}
+                {/if}
+              </h3>
               <p class="description">{desc}</p>
             </div>
           </div>
