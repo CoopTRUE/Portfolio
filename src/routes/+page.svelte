@@ -20,7 +20,7 @@
 <main>
   <Hero {navHeight} />
   <Work />
-  <Tools />
+  <!-- <Tools /> -->
   <Connect />
 </main>
 <Footer />

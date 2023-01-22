@@ -18,14 +18,14 @@
     <ul class="links">
       <li><a href="#home">Home</a></li>
       <li><a href="#work">Work</a></li>
-      <li><a href="#tools">Tools</a></li>
+      <!-- <li><a href="#tools">Tools</a></li> -->
       <li><a href="#connect">Connect</a></li>
     </ul>
   </nav>
 {/if}
 
 <style lang="scss">
-  @media (max-width: 780px) {
+  @media (max-width: 660px) {
     nav {
       justify-content: center !important;
     }

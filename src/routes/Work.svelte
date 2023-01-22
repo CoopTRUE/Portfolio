@@ -47,7 +47,11 @@
   .project-wrapper {
     //980 500
     width: min(60rem, 90vw);
-    height: min(30rem, 50vw);
+    height: min(30rem, 40vw);
+    @media (max-width: 780px) {
+      height: 25rem;
+      border-radius: 20px !important;
+    }
     border-radius: 40px;
     position: relative;
     overflow: hidden;
@@ -104,6 +108,10 @@
       }
       img {
         border-radius: 10px 10px 0 0 !important;
+        width: 70vw !important;
+      }
+      .description {
+        margin-bottom: 1rem;
       }
     }
     place-items: center;
