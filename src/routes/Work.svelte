@@ -116,7 +116,7 @@
     width: min(60rem, 90vw);
     height: min(30rem, 40vw);
     @media (max-width: 780px) {
-      height: 25rem;
+      height: 70vw;
       border-radius: 20px !important;
     }
     border-radius: 40px;
