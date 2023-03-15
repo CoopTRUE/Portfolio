@@ -14,7 +14,7 @@
           class="project-wrapper"
           style:background={color}
           use:inview={{ unobserveOnEnter: true }}
-          on:enter={() => (visible[i] = true)}
+          on:inview_enter={() => (visible[i] = true)}
           class:transitionRight={visible[i] && i % 2 !== 0}
           class:transitionLeft={visible[i] && i % 2 === 0}
         >

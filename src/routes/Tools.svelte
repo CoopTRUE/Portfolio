@@ -13,7 +13,7 @@
         class="tool"
         style="--bg-color: {color}"
         use:inview={{ unobserveOnEnter: true }}
-        on:enter={() => (visible[i] = true)}
+        on:inview_enter={() => (visible[i] = true)}
         class:transitionBg={visible[i]}
       >
         <div class="name-container">
