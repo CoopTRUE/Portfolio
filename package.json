@@ -37,8 +37,5 @@
     "vite": "^4.1.4",
     "vite-imagetools": "^4.0.18"
   },
-  "browserslist": [
-    "defaults"
-  ],
   "type": "module"
 }

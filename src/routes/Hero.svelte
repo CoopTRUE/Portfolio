@@ -37,7 +37,7 @@
         Based in San Francisco, California 🇺🇸
       </h2>
       <h1 class="title" in:fly={{ x: 0, y: 50, duration: 400 }}>
-        Trader, developer,<br />and student.
+        Traderr, developer,<br />and student.
       </h1>
       <div class="tools-i-work-with">
         <h2 in:fade={{ duration: 300, delay: 600 }}>Tools I work with</h2>
